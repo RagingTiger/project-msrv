@@ -1,0 +1,23 @@
+{
+  "Kung FOO": {
+    "fname": "kung_foo.mp3",
+    "fdir": "media",
+    "price": "1.99",
+    "mime": "audio/mpeg",
+    "upname": "kf.mp3"
+  },
+  "The Best BAR In Hell": {
+    "fname": "best_bar_in_hell.mp3",
+    "fdir": "media",
+    "price": "1.99",
+    "mime": "audio/mpeg",
+    "upname": "bbnh.mp3"
+  },
+  "All About That BAZe": {
+    "fname": "all_about_that_baze.mp3",
+    "fdir": "media",
+    "price": "1.99",
+    "mime": "audio/mpeg",
+    "upname": "aabtb.mp3"
+  }
+}

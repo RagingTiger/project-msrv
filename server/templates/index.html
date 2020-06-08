@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Project-MSRV</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"/>
+    <script defer src="{{url_for('static', filename='cart.js')}}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+                                   user-scale=no, minimum-scale=1,
+                                   maximum-scale=1">
+    <script>
+      // function for blinking arrows
+      function blink() {
+         var a1 = document.getElementById('arrow1');
+         var a2 = document.getElementById('arrow2');
+         setInterval(function() {
+            a1.style.color = (a1.style.color == 'black' ? '#00ff00': 'black')
+            a2.style.color = (a2.style.color == 'black' ? '#00ff00': 'black')
+         }, 1000);
+      }
+    </script>
+    <style>
+      body {
+        color: #00ff00;
+      }
+      h1 {
+        color:red;
+        font-family: "Courier", monospace;
+        font-size:30vw;
+        text-align:center;
+        margin-top: 0px;
+        margin-bottom: 40px;
+      }
+
+      #site_desc {
+        font-family: "Courier", monospace;
+        font-size:25px;
+        margin: auto auto;
+        padding-bottom:30px;
+        text-align: center;
+        width:65vmin;
+      }
+
+      #arrow1 {
+        display: inline-block
+      }
+
+      #arrow2 {
+        display: inline-block
+      }
+
+      #dwnld {
+        color: red;
+        display: inline-block;
+        text-decoration: none;
+      }
+
+      .navili {
+        /* text-decoration: inherit; */
+        margin: auto auto;
+        line-height: 2;
+      }
+    </style>
+  </head>
+  <body onload="blink();">
+    <h1 id="header">
+      MSRV
+    </h1>
+    <div id="site_desc">
+      <div class="navili">
+        <div id="arrow1">====></div>
+        <a id=dwnld href="/catalog" title="Digital Catalog">
+          D0wnl0ad @ur $h!t
+        </a>
+        <div id="arrow2"><====</div>
+      </div>
+    </div>
+  </body>
+</html>

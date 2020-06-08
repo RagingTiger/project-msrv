@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Digital Catalog</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"/>
+    <script defer src="{{url_for('static', filename='cart.js')}}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+                                   user-scale=no, minimum-scale=1,
+                                   maximum-scale=1">
+    <style>
+      h1 {
+        color:red;
+        font-family: "Courier", monospace;
+        font-size:10vw;
+        text-align:center;
+        margin-top: auto;
+        margin-bottom: auto;
+        padding-bottom:25px;
+      }
+
+      #catalog {
+        font-family: "Courier", monospace;
+        font-size:16px;
+        margin: auto auto;
+        padding-bottom:25px;
+        text-align: center;
+        width:60vmin;
+      }
+
+      .item {
+        /* text-decoration: inherit; */
+        margin: auto auto;
+        line-height: 3;
+        text-align: left;
+
+      }
+
+      .add2Cart {
+        background-color:black;
+        border-color:red;
+        color:red;
+        font-size: 1rem;
+        border-radius: 1em;
+        cursor: pointer;
+        border-style: solid;
+        text-align: right;
+      }
+
+      .add2Cart:focus {
+        outline: none;
+        border-color: #cc00ff;
+        color: #ccddff;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>
+      Digital Catalog
+    </h1>
+    <div id="catalog">
+        {%- for name, price in catalog.items() %}
+        <div class="item">
+          {{ name }}
+          <span style="float:right;">
+            ${{ price }}
+            <button data-name="{{ name }}" data-price="{{ price }}"
+                    class="add2Cart" title="Add {{ name }} to Cart">
+              add
+            </button>
+          </span>
+        </div>
+        {%- endfor %}
+    </div>
+  </body>
+</html>
