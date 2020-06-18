@@ -17,6 +17,10 @@ app_conf.init(app)
 def front_page():
     return flask.render_template('index.html')
 
+@app.route('/cart')
+def view_cart():
+    return flask.render_template('cart.html')
+
 @app.route('/catalog')
 def digital_catalog():
     # get digital catalog babay
