@@ -19,5 +19,19 @@
     "price": "1.99",
     "mime": "audio/mpeg",
     "upname": "aabtb.mp3"
+  },
+  "FOOed Around And Fell In Love": {
+    "fname": "fooed_around_and_fell_in_love.mp3",
+    "fdir": "media",
+    "price": "2.99",
+    "mime": "audio/mpeg",
+    "upname": "faafnl.mp3"
+  },
+  "Only FOOs Rush In": {
+    "fname": "only_foos_rush_in.mp3",
+    "fdir": "media",
+    "price": "2.99",
+    "mime": "audio/mpeg",
+    "upname": "ofrn.mp3"
   }
 }
