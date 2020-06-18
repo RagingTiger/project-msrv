@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"/>
+    <script src="{{url_for('static', filename='cart.js')}}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+                                   user-scale=no, minimum-scale=1,
+                                   maximum-scale=1">
+    <style>
+      body {
+        color: #00ff00;
+      }
+      h1 {
+        color:red;
+        font-family: "Courier", monospace;
+        font-size:10vw;
+        text-align:center;
+        margin-top: auto;
+        margin-bottom: auto;
+        padding-bottom:25px;
+      }
+
+      #cart-view {
+        font-family: "Courier", monospace;
+        font-size:16px;
+        margin: auto auto;
+        padding-bottom:25px;
+        text-align: center;
+        width:60vmin;
+      }
+
+      .item {
+        /* text-decoration: inherit; */
+        margin: auto auto;
+        line-height: 3;
+        text-align: left;
+
+      }
+
+      .rmItem {
+        background-color:black;
+        border-color:red;
+        color:red;
+        font-size: 1rem;
+        border-radius: 1em;
+        cursor: pointer;
+        border-style: solid;
+        text-align: right;
+      }
+
+      .rmItem:focus {
+        outline: none;
+        border-color: #cc00ff;
+        color: #ccddff;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>
+      Cart
+    </h1>
+    <div id="cart-view">
+    </div>
+    <script>
+      // check if cart has any entries/items
+      if (Object.entries(cart).length > 0) {
+        // if yes then iterate through them
+        for (let [key, value] of Object.entries(cart)) {
+          // create item divs using key / value pairs
+          let item_div = document.createElement('div');
+
+          // set div class, and inner HTML on item div
+          item_div.className = 'item';
+          item_div.innerHTML = key;
+
+          // create span element for inside item div
+          let span_elem = document.createElement('span');
+
+          // add text to inner HTML of span element
+          span_elem.innerHTML = `$${value}` + ' ';
+
+          // add style to span element
+          span_elem.style.float = 'right';
+
+          // create button element for inside span element
+          let span_btn = document.createElement('button');
+
+          // set class, title, innerHTML, and dataset attributes on button
+          span_btn.className = 'rmItem';
+          span_btn.title = `Remove ${key} from Cart`;
+          span_btn.innerHTML = 'x';
+          span_btn.dataset['name'] = key;
+
+          // add button to span element
+          span_elem.appendChild(span_btn);
+
+          // add span element to item
+          item_div.appendChild(span_elem);
+
+          // finally get cart-view div and append item div
+          let cart_view = document.getElementById('cart-view');
+          cart_view.appendChild(item_div);
+
+          // finally setup delete buttons
+          setupDelBtn();
+        }
+      }
+      else {
+        // else render that cart is empty
+        console.log('EMPTY')
+      }
+    </script>
+  </body>
+</html>
