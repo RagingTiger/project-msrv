@@ -4,24 +4,11 @@
     <meta charset="utf-8"/>
     <title>Project-MSRV</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"/>
+    <script src="{{url_for('static', filename='fx.js')}}"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1,
                                    user-scale=no, minimum-scale=1,
                                    maximum-scale=1">
-    <script>
-      // function for blinking arrows
-      function blink() {
-         var a1 = document.getElementById('arrow1');
-         var a2 = document.getElementById('arrow2');
-         setInterval(function() {
-            a1.style.color = (a1.style.color == 'black' ? '#00ff00': 'black')
-            a2.style.color = (a2.style.color == 'black' ? '#00ff00': 'black')
-         }, 1000);
-      }
-    </script>
     <style>
-      body {
-        color: #00ff00;
-      }
       h1 {
         color:red;
         font-family: "Courier", monospace;
@@ -40,18 +27,18 @@
         width:65vmin;
       }
 
-      #arrow1 {
-        display: inline-block
-      }
-
-      #arrow2 {
-        display: inline-block
-      }
-
       #dwnld {
         color: red;
         display: inline-block;
         text-decoration: none;
+      }
+
+      #arrow1 {
+        display: inline-block;
+      }
+
+      #arrow2 {
+        display: inline-block;
       }
 
       .navili {
@@ -61,7 +48,7 @@
       }
     </style>
   </head>
-  <body onload="blink();">
+  <body>
     <h1>
       MSRV
     </h1>
@@ -74,5 +61,9 @@
         <div id="arrow2"><====</div>
       </div>
     </div>
+    <script>
+      // run after document body loads (src: fx.js)
+      document.body.onload = blink;
+    </script>
   </body>
 </html>
