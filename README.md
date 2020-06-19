@@ -9,6 +9,9 @@ eye towards a `stateless` design. The example chosen for the website, is a
 fictitious group of *recording artists* and *musicians* known as `Project MSRV`
 (or simply `MSRV` as the fans call them.)
 
+## Design
+`TODO` hehehehe
+
 ## Usage
 There are a few ways to use the repository, and we will document two of those
 ways:
@@ -59,6 +62,28 @@ To simply run the example platform, using the default `NONCE` value (see
 $ docker run -d --name msrv -p 5000:5000 tigerj/msrv
 ```
 Then navigate to http://localhost:5000 to browse the platform.
+
+#### Stop
+To stop the running container:
+```
+$ docker stop msrv
+```
+
+#### Remove
+To remove a stopped container:
+```
+$ docker rm msrv
+```
+
+#### Build
+If you would like to build the container (e.g. for your system's architecture):
+```
+$ git clone https://github.com/RagingTiger/project-msrv
+$ cd project-msrv
+$ docker build -t msrv .
+```
+**Note**: naturally you can name the image (after `-t` option) whatever you like
+here we simply chose `msrv` for .... well simplicity.
 
 ### Docker Image Features
 There are some key features to understand about using this example platform:
