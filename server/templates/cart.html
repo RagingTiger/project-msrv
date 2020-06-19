@@ -9,9 +9,6 @@
                                    user-scale=no, minimum-scale=1,
                                    maximum-scale=1">
     <style>
-      body {
-        color: #00ff00;
-      }
       h1 {
         color:red;
         font-family: "Courier", monospace;
@@ -32,7 +29,6 @@
       }
 
       .item {
-        /* text-decoration: inherit; */
         margin: auto auto;
         line-height: 3;
         text-align: left;
@@ -56,6 +52,11 @@
         color: #ccddff;
       }
 
+      .emptyCart {
+        margin: auto auto;
+        line-height: 3;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -109,8 +110,8 @@
         }
       }
       else {
-        // else render that cart is empty
-        console.log('EMPTY')
+        // the cart is empty
+        cartIsEmpty();
       }
     </script>
   </body>
