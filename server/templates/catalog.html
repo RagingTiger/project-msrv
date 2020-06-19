@@ -74,6 +74,21 @@
       #arrow2 {
         display: inline-block;
       }
+
+      #lblCartCount {
+        font-size: 15px;
+        font-weight: bold;
+        background: red;
+        border-color: red;
+        color: black;
+        padding: 0 5px;
+        vertical-align: top;
+        margin-left: -15px;
+        padding-left: 4px;
+        padding-right: 4px;
+        border-radius: 18px;
+      }
+
     </style>
   </head>
   <body>
@@ -97,11 +112,15 @@
     <div id="cart">
       <div id="arrow1">====></div>
       <a class="navilink" href="/cart">Cart</a>
+      <span id='lblCartCount'>0</span>
       <div id="arrow2"><====</div>
     </div>
     <script>
       // add javascript event listener to add buttons for cart
       setupAddBtn();
+
+      // setup cart count label
+      setupCartCount();
 
       // setup on blink on body load (src: fx.js)
       document.body.onload = blink;

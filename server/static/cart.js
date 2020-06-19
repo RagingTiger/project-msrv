@@ -18,12 +18,19 @@ function putInCart(event) {
   const item = new Item(data.name, data.price);
 
   // check if item is already in hash map data structure (global cart object)
-  if (!cart[item.name]) {
+  if (!(item.name in cart)) {
     // add item temp cart
     cart[item.name] = item.price;
 
     // and update storage
     localStorage.setItem('cart', JSON.stringify(cart));
+
+    // update cart label
+    let cartLabel = document.getElementById('lblCartCount');
+
+    // set cart count
+    let cartCount = parseInt(cartLabel.textContent, 10);
+    cartLabel.textContent = ++cartCount;
   }
 }
 
@@ -87,6 +94,17 @@ function setupDelBtn() {
   buttons.forEach((button)=>{
     button.addEventListener('click', rmFromCart, false);
   });
+}
+
+function setupCartCount() {
+  // get current length of cart object
+  let cartCount = Object.keys(cart).length;
+
+  // get cart count label
+  let cartLabel = document.getElementById('lblCartCount');
+
+  // set label
+  cartLabel.textContent = cartCount;
 }
 
 // check to see if cart exists and parse to global cart object
