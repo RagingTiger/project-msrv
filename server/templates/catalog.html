@@ -5,6 +5,7 @@
     <title>Digital Catalog</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"/>
     <script src="{{url_for('static', filename='cart.js')}}"></script>
+    <script src="{{url_for('static', filename='fx.js')}}"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1,
                                    user-scale=no, minimum-scale=1,
                                    maximum-scale=1">
@@ -53,6 +54,26 @@
         color: #ccddff;
       }
 
+      #cart {
+        bottom: 4px;
+        font-family: "Courier", monospace;
+        font-size:25px;
+        text-align: center;
+      }
+
+      .navilink {
+        color: red;
+        display: inline-block;
+        text-decoration: none;
+      }
+
+      #arrow1 {
+        display: inline-block;
+      }
+
+      #arrow2 {
+        display: inline-block;
+      }
     </style>
   </head>
   <body>
@@ -73,9 +94,17 @@
         </div>
         {%- endfor %}
     </div>
+    <div id="cart">
+      <div id="arrow1">====></div>
+      <a class="navilink" href="/cart">Cart</a>
+      <div id="arrow2"><====</div>
+    </div>
     <script>
       // add javascript event listener to add buttons for cart
       setupAddBtn();
+
+      // setup on blink on body load (src: fx.js)
+      document.body.onload = blink;
     </script>
   </body>
 </html>
