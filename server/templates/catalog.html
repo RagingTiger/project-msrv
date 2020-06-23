@@ -4,7 +4,9 @@
     <meta charset="utf-8"/>
     <title>Digital Catalog</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"/>
+    <!-- importing static/cart.js -->
     <script src="{{url_for('static', filename='cart.js')}}"></script>
+    <!-- importing static/fx.js -->
     <script src="{{url_for('static', filename='fx.js')}}"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1,
                                    user-scale=no, minimum-scale=1,
@@ -88,7 +90,6 @@
         padding-right: 4px;
         border-radius: 18px;
       }
-
     </style>
   </head>
   <body>
@@ -111,15 +112,15 @@
     </div>
     <div id="cart">
       <div id="arrow1">====></div>
-      <a class="navilink" href="/cart">Cart</a>
+      <a class="navilink" href="/cart" title="View Shopping Cart">Cart</a>
       <span id='lblCartCount'>0</span>
       <div id="arrow2"><====</div>
     </div>
     <script>
-      // add javascript event listener to add buttons for cart
+      // add javascript event listener to add buttons for cart (src: cart.js)
       setupAddBtn();
 
-      // setup cart count label
+      // setup cart count label (src: cart.js)
       setupCartCount();
 
       // setup on blink on body load (src: fx.js)
