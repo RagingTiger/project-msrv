@@ -65,7 +65,7 @@ def view_purchases():
         # print out error
         error.print_error(err, 'Payment validation failed with')
 
-        # return standard 404 status code for curious hackers
+        # return 418 status code for sh!ts and gigs
         flask.abort(418)
 
     else:
