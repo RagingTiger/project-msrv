@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Checkout</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"/>
+    <!-- importing static/cart.js -->
+    <script src="{{url_for('static', filename='cart.js')}}"></script>
+    <!-- import static/fx.js -->
+    <script src="{{url_for('static', filename='fx.js')}}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+                                   user-scale=no, minimum-scale=1,
+                                   maximum-scale=1">
+    <style>
+      h1 {
+        color:red;
+        font-family: "Courier", monospace;
+        font-size:10vw;
+        text-align:center;
+        margin-top: auto;
+        margin-bottom: auto;
+        padding-bottom:25px;
+      }
+
+      #cart-view {
+        border-color: #00aa00;
+        border-radius: 1em;
+        border-style: solid;
+        color: #00ff00;
+        font-family: "Courier", monospace;
+        font-size:16px;
+        margin: auto auto;
+        padding: 30px;
+        text-align: center;
+        width:60vmin;
+      }
+
+      .item {
+        margin: auto auto;
+        line-height: 3;
+        text-align: left;
+      }
+
+      #total {
+        color: #eeeeaa;
+        margin: auto auto;
+        line-height: 3;
+        text-align: left;
+        padding-bottom: 40px;
+      }
+
+      .emptyCart {
+        margin: auto auto;
+        line-height: 3;
+        text-align: center;
+      }
+
+      #purchase {
+        bottom: 4px;
+        font-family: "Courier", monospace;
+        font-size:25px;
+        padding-top: 20px;
+        text-align: center;
+      }
+
+      .submit {
+        background: none;
+        border: none;
+        color: red;
+        cursor: pointer;
+        display: inline-block;
+        font-family: "Courier", monospace;
+        font-size:25px;
+        text-decoration: none;
+      }
+
+      #arrow1 {
+        display: inline-block;
+      }
+
+      #arrow2 {
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Checkout</h1>
+    <form method="POST" action="/purchases">
+      <div id="cart-view">
+      </div>
+      <div id="purchase">
+        <div id="arrow1">====></div>
+        <input class="submit" type="submit" value="Purchase" title="Purchase">
+        <div id="arrow2"><====</div>
+      </div>
+    </form>
+    <script>
+      // check if cart has any entries/items
+      if (Object.entries(cart).length > 0) {
+        // create global total
+        let total = 0.00;
+
+        // if yes then iterate through them
+        for (let [key, value] of Object.entries(cart)) {
+          // create item divs using key / value pairs
+          let item_div = document.createElement('div');
+
+          // set div class, and inner HTML on item div
+          item_div.className = 'item';
+          item_div.innerHTML = key;
+
+          // create span element for inside item div
+          let span_elem = document.createElement('span');
+
+          // add text to inner HTML of span element
+          span_elem.innerHTML = `$${value}`
+
+          // add style to span element
+          span_elem.style.float = 'right';
+
+          // create input for form data
+          let input_data = document.createElement('input');
+
+          // set input type to hidden so client cannot see/change input
+          input_data.type = 'hidden';
+
+          // set input name/value to be sent to server on from submit
+          input_data.name = key;
+          input_data.value = value;
+
+          // add input element to span element
+          span_elem.appendChild(input_data);
+
+          // add span element to item
+          item_div.appendChild(span_elem);
+
+          // finally get cart-view div and append item div
+          let cart_view = document.getElementById('cart-view');
+          cart_view.appendChild(item_div);
+
+          // update total
+          total += parseFloat(value);
+        }
+
+        // create div and span element for total
+        let total_div = document.createElement('div');
+        let total_span = document.createElement('span');
+
+        // set class on div
+        total_div.id = 'total'
+
+        // fill in contents of span element
+        total_span.innerHTML = `Total: $${total.toFixed(2)}`
+
+        // set style on span element to align it to the right of parent
+        total_span.style.float = 'right';
+
+        // add span element to div
+        total_div.appendChild(total_span);
+
+        // finally get cart-view div and append total div
+        let cart_view = document.getElementById('cart-view');
+        cart_view.appendChild(total_div);
+
+        // setup on blink on body load (src: fx.js)
+        document.body.onload = blink;
+      }
+      else {
+        // the cart is empty (src: cart.js)
+        cartIsEmpty();
+      }
+    </script>
+  </body>
+</html>

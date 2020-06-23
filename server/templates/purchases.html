@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Purchases</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+                                   user-scale=no, minimum-scale=1,
+                                   maximum-scale=1">
+    <style>
+      h1 {
+        color:red;
+        font-family: "Courier", monospace;
+        font-size:10vw;
+        text-align:center;
+        margin-top: auto;
+        margin-bottom: auto;
+        padding-bottom:25px;
+      }
+
+      #purchases {
+        font-family: "Courier", monospace;
+        font-size:16px;
+        margin: auto auto;
+        padding-bottom:25px;
+        text-align: center;
+        width:60vmin;
+      }
+
+      .item {
+        margin: auto auto;
+        line-height: 3;
+        text-align: left;
+      }
+
+      .dwnld {
+        background-color:black;
+        border-color:red;
+        border-radius: 1em;
+        border-style: solid;
+        color:red;
+        cursor: pointer;
+        font-size: 1rem;
+        padding: 5px;
+        text-align: right;
+        text-decoration: none;
+      }
+
+      .dwnld:focus {
+        outline: none;
+        border-color: #cc00ff;
+        color: #ccddff;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Purchases</h1>
+    <div id="purchases">
+      {%- for name, dwnldlink in downloads.items() %}
+      <div class="item">
+        {{ name }}
+        <span style="float:right;">
+          <a class="dwnld" download="" href="{{ dwnldlink }}">
+            download
+          </a>
+        </span>
+      </div>
+      {%- endfor %}
+    </div>
+  </body>
+</html>
