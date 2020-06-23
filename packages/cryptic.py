@@ -3,6 +3,7 @@ import datetime
 import hashlib
 import os
 import sys
+import urllib.parse
 
 # custom funcs
 def expect_hexstr(hexstr):
@@ -59,15 +60,26 @@ def bitflip(digest):
     # give back
     return flipped_xdgst
 
-def encode_dtime(digest):
+def encode_dtime(digest, exp_time='now'):
     """
         Returns a hexadecimal string encoded with datetime
     """
     # check that digest is string
     expect_hexstr(digest)
 
-    # get current datetime
-    dt = datetime.datetime.now().strftime('%y%m%d%H%M')
+    # get current datetime object
+    cur_dt = datetime.datetime.now()
+
+    # check for expiration time
+    if exp_time == 'now':
+        # format current datetime
+        dt = cur_dt.strftime('%y%m%d%H%M')
+    else:
+        # add exp_time hours of access before expiration
+        exp_dt = cur_dt + datetime.timedelta(hours=exp_time)
+
+        # now format
+        dt = exp_dt.strftime('%y%m%d%H%M')
 
     # convert dt to integer
     dt_int = int(dt, 10)
@@ -99,3 +111,33 @@ def scramble_hash(digest):
 
     # give back
     return flip_n_hash
+
+def gen_download_links(nonce_hash, order):
+    """
+        Returns dictionary of file name/download link key/value pairs
+    """
+    # setup downloads dict
+    downloads = {}
+
+    # get names of items
+    for item, file_name in order.items():
+        # get proof of purchase
+        pop = sha256(file_name + nonce_hash)
+
+        # create new nonce hash from proof of purchase
+        poe_nonce = scramble_hash(pop)
+
+        # get proof of expiration
+        poe = encode_dtime(poe_nonce, exp_time=24)
+
+        # encode item name for url
+        urlenc_item = urllib.parse.quote(item)
+
+        # create download string
+        dwnld_str = '/download/{}/{}/{}'.format(pop, poe, urlenc_item)
+
+        # add to downloads dic
+        downloads[item] = dwnld_str
+
+    # serve up fresh download links
+    return downloads
