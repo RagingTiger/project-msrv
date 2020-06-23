@@ -4,7 +4,10 @@
     <meta charset="utf-8"/>
     <title>Cart</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"/>
+    <!-- importing static/cart.js -->
     <script src="{{url_for('static', filename='cart.js')}}"></script>
+    <!-- importing static/fx.js -->
+    <script src="{{url_for('static', filename='fx.js')}}"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1,
                                    user-scale=no, minimum-scale=1,
                                    maximum-scale=1">
@@ -57,6 +60,27 @@
         line-height: 3;
         text-align: center;
       }
+
+      #checkout {
+        bottom: 4px;
+        font-family: "Courier", monospace;
+        font-size:25px;
+        text-align: center;
+      }
+
+      .navilink {
+        color: red;
+        display: inline-block;
+        text-decoration: none;
+      }
+
+      #arrow1 {
+        display: inline-block;
+      }
+
+      #arrow2 {
+        display: inline-block;
+      }
     </style>
   </head>
   <body>
@@ -64,6 +88,11 @@
       Cart
     </h1>
     <div id="cart-view">
+    </div>
+    <div id="checkout">
+      <div id="arrow1">====></div>
+      <a class="navilink" href="/checkout" title="Checkout">Checkout</a>
+      <div id="arrow2"><====</div>
     </div>
     <script>
       // check if cart has any entries/items
@@ -105,12 +134,15 @@
           let cart_view = document.getElementById('cart-view');
           cart_view.appendChild(item_div);
 
-          // finally setup delete buttons
+          // finally setup delete buttons (src: cart.js)
           setupDelBtn();
+
+          // setup on blink on body load (src: fx.js)
+          document.body.onload = blink;
         }
       }
       else {
-        // the cart is empty
+        // the cart is empty (src: cart.js)
         cartIsEmpty();
       }
     </script>
