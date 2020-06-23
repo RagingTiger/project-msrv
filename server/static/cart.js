@@ -34,8 +34,9 @@ function putInCart(event) {
   }
 }
 
+// display `Empty` in cart when no more items exist
 function cartIsEmpty() {
-  // else create div for empty cart
+  // create div for empty cart
   let empty = document.createElement('div');
 
   // set div class, and inner HTML on empty div
@@ -45,8 +46,12 @@ function cartIsEmpty() {
   // finally get cart-view div and append item div
   let cart_view = document.getElementById('cart-view');
   cart_view.appendChild(empty);
+
+  // also hide checkout button because there is nothing to buy ....  
+  document.getElementById('checkout').hidden = true;
 }
 
+// remove item from cart
 function rmFromCart(event) {
   // get button element from event
   let btn = event.target;
@@ -76,6 +81,7 @@ function rmFromCart(event) {
   }
 }
 
+// set event listener and putInCart func to all class=add2Cart button
 function setupAddBtn() {
   // get all add to cart buttons
   var buttons = document.querySelectorAll('.add2Cart');
@@ -86,6 +92,7 @@ function setupAddBtn() {
   });
 }
 
+// set event listener and rmFromCart func to all class=rmItem buttons
 function setupDelBtn() {
   // get all add to cart buttons
   var buttons = document.querySelectorAll('.rmItem');
@@ -96,6 +103,7 @@ function setupDelBtn() {
   });
 }
 
+// set cart count label to current number of items in cart
 function setupCartCount() {
   // get current length of cart object
   let cartCount = Object.keys(cart).length;
@@ -106,6 +114,10 @@ function setupCartCount() {
   // set label
   cartLabel.textContent = cartCount;
 }
+
+/*
+ * ------ EXECUTE ON LOAD -------
+ */
 
 // check to see if cart exists and parse to global cart object
 let cart = JSON.parse(localStorage.getItem('cart'));
