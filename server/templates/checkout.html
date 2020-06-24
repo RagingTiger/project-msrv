@@ -162,12 +162,18 @@
         let cart_view = document.getElementById('cart-view');
         cart_view.appendChild(total_div);
 
+        // setup clear cart button
+        setupClearCartBtn();
+
         // setup on blink on body load (src: fx.js)
         document.body.onload = blink;
       }
       else {
         // the cart is empty (src: cart.js)
         cartIsEmpty();
+
+        // also hide purchase button because there is nothing to buy ....
+        document.getElementById('purchase').hidden = true;
       }
     </script>
   </body>
