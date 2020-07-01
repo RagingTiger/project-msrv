@@ -112,7 +112,23 @@ make sure to pass the port `5000` as seen above.
 The following depicts some key things to consider when adapting (i.e. meaning to
 use the existing repo without changing its fundamental structure) this
 `repository` to your own project:
-  + **1**: Using pre-existing repo structure
+  + **1**: Switch to `adapt` git branch
+  + **2**: Using pre-existing repo structure
+
+### Adapt Git Branch
+As of now the way the repo is handling `adaptation` is through a separate `git`
+branch where a few files are changed to help with developing your own project
+(i.e. changing the `Flask` routes, `Python 3` source, and `HTML/CSS`) and
+building your own unique `Docker image`. To switch to the `adapt` branch:
+```
+$ cd project-msrv
+$ git checkout adapt
+```
+
+Now fair **WARNING**, this branch uses a `.dockerignore` file to **ignore** the
+contents of the `server/config` and `server/media` folders. You will have to
+follow the rest of the documentation to learn about how to use this branch and
+`build` your unique `Docker image`. 
 
 ### Pre-Existing Repo Structure
 The entire repository reflects the `structure` of the application and this can
