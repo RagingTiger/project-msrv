@@ -1,10 +1,13 @@
 # Base Python image for building uWSGI
 FROM python:3.8.2-slim-buster AS builder
 
+# set uWSGI version
+ARG UWSGI_VERS=2.0.19.1
+
 # Install libs for compiling uwsgi
 RUN apt-get update && apt-get -y install \
     build-essential && \
-    pip install uwsgi
+    pip install uwsgi==${UWSGI_VERS}
 
 # Now beginning final production image
 FROM python:3.8.2-slim-buster AS production
