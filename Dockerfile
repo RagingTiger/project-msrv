@@ -12,6 +12,11 @@ RUN apt-get update && apt-get -y install \
 # Now beginning final production image
 FROM python:3.8.2-slim-buster AS production
 
+# get mime support for static content
+RUN apt-get update && apt-get -y install \
+    mime-support \
+ && rm -rf /var/lib/apt/lists/*
+
 # set workdir
 WORKDIR /project-msrv
 
